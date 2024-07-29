@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int numTeams(vector<int>& rating) {
+        int n = rating.size();
+        int team = 0;
+        for (int i = 1; i < n - 1; i++) {
+            int smallerCurrentLeft = 0;
+            int greaterCurrentRight = 0;
+            int greaterCurrentLeft = 0;
+            int smallerCurrentRight = 0;
+
+            for (int j = 0; j < i; j++) {
+                if (rating[i] < rating[j]) {
+                    greaterCurrentLeft++;
+                } else {
+                    smallerCurrentLeft++;
+                }
+            }
+            for (int j = i + 1; j < n ; j++) {
+                if (rating[i] < rating[j]) {
+                    greaterCurrentRight++;
+                } else {
+                    smallerCurrentRight++;
+                }
+            }
+
+            team += smallerCurrentLeft * greaterCurrentRight +
+                    greaterCurrentLeft * smallerCurrentRight;
+        }
+
+        return team;
+    }
+};
